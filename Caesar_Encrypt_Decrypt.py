@@ -13,9 +13,14 @@ if option == 1:
         uni_transform = ord(char) + key
         encrypt = chr(uni_transform)
         print(encrypt, end='')
-    print('\nBye!!!!')
+    print('\nBye!!!!') 
 elif option == 2:
-    #under creation
-    x=0 #i will remove later
+    text = input("White the text to decrypt: ")
+    key = int(input("Put the key to decrypt: "))
+    for char1 in text:
+        uni_transform = ord(char1) - key
+        decrypt = chr(uni_transform)
+        print(decrypt, end='')
+    print("\nBye!!!!")
 else:
     print('Wrong option!!!')
