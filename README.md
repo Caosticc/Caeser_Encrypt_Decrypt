@@ -1,2 +1,2 @@
-# Caeser_Encrypt_Decrypt
- caesar cipher decryptor
+# Cryptography
+Dedicated repository for encryption-related code
