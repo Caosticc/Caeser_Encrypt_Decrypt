@@ -1,26 +1,36 @@
-print('-='*25)
+print('-=' * 25)
 print("\t\033[3;35mWelcome to Caesar Cipher Decryptor\033[m")
-print('-='*25)
+print('-=' * 25)
 
 
 def encrypt(text, key):
-    for char in text:  # get the characters from the text
-        # transform characters into unicode table codes and sum with key
-        uni_transform = ord(char) + (key % 26)
-        # transforms new unicode table values ​​into character
-        encrypt = chr(uni_transform)
-        print(f"\033[30m{encrypt}\033[m", end='')
-    print('\nBye!!!!')
+    result = ''
+    for char in text:
+        if char.isalpha():
+            shift = key % 26
+            if char.islower():
+                result += chr((ord(char) - ord('a') + shift) % 26 + ord('a'))
+            elif char.isupper():
+                result += chr((ord(char) - ord('A') + shift) % 26 + ord('A'))
+        else:
+            result += char
+    print(f"\033[30m{result}\033[m")
+    print('Bye!!!!')
 
 
 def decrypt(text, key):
-    for char in text:  # get the characters from the text
-        # transform characters into unicode table codes and substracts with the key
-        transform_uni = ord(char) - (key % 26)
-        # transforms the unicode table values into the decrypted message
-        decrypt = chr(transform_uni)
-        print(decrypt, end='')
-    print("\nBye!!!!")
+    result = ''
+    for char in text:
+        if char.isalpha():
+            shift = key % 26
+            if char.islower():
+                result += chr((ord(char) - ord('a') - shift) % 26 + ord('a'))
+            elif char.isupper():
+                result += chr((ord(char) - ord('A') - shift) % 26 + ord('A'))
+        else:
+            result += char
+    print(result)
+    print('Bye!!!!')
 
 
 print('''\033[1mChoose an option\033[m
@@ -32,7 +42,7 @@ if option == 1:
     key = int(input("Put the key to encrypt: "))
     encrypt(text, key)
 elif option == 2:
-    text = input("White the text to decrypt: ")
+    text = input("Write the text to decrypt: ")
     key = int(input("Put the key to decrypt: "))
     decrypt(text, key)
 else:
